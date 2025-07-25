@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { AuthService } from './services/auth';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
 })
-export class App {
-  protected title = 'frontend';
+export class AppComponent {
+  constructor(public auth: AuthService) {
+    this.auth.cargarEstado();
+  }
+
+  logout() {
+    this.auth.logout();
+  }
 }
