@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
   isLoggedIn = false;
-  nombreUsuario: string | null = null;
+  nombreUsuario = '';
 
   login(nombre: string, token: string) {
     this.isLoggedIn = true;
     this.nombreUsuario = nombre;
     localStorage.setItem('token', token);
-    localStorage.setItem('nombreUsuario', nombre);
+    localStorage.setItem('nombre', nombre);
   }
 
   logout() {
     this.isLoggedIn = false;
-    this.nombreUsuario = null;
+    this.nombreUsuario = '';
     localStorage.removeItem('token');
-    localStorage.removeItem('nombreUsuario');
+    localStorage.removeItem('nombre');
   }
 
   cargarEstado() {
     const token = localStorage.getItem('token');
-    const nombre = localStorage.getItem('nombreUsuario');
-    if (token && nombre) {
-      this.isLoggedIn = true;
-      this.nombreUsuario = nombre;
-    }
+    const nombre = localStorage.getItem('nombre');
+    this.isLoggedIn = !!token;
+    this.nombreUsuario = nombre || '';
+  }
+  obtenerToken(): string | null {
+    return localStorage.getItem('token');
   }
 }
