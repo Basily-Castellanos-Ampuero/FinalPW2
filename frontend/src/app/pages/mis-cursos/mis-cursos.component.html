@@ -1,0 +1,32 @@
+<h2>Mis cursos</h2>
+
+<table *ngIf="cursos.length > 0; else noCursos">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Categoría</th>
+      <th>Dificultad</th>
+      <th>Frecuencia</th>
+      <th>Tiempo límite</th>
+      <th>Fecha de creación</th>
+      <th>Acciones</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let curso of cursos">
+      <td>{{ curso.nombre }}</td>
+      <td>{{ curso.categoria }}</td>
+      <td>{{ curso.dificultad }}</td>
+      <td>{{ curso.frecuencia_estudio }}</td>
+      <td>{{ curso.tiempo_limite + ' días' }}</td>
+      <td>{{ curso.creado | date: 'dd/MM/yyyy HH:mm' }}</td>
+      <td>
+        <button [routerLink]="['/curso', curso.id]">Detalles</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noCursos>
+  <p>No tienes cursos creados aún.</p>
+</ng-template>
