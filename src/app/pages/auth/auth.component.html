@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h2>Registro / Login</h2>
+
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="email" class="form-control" />
+
+  <label>Nombre:</label>
+  <input type="text" [(ngModel)]="nombre" class="form-control" />
+
+  <label>Contraseña:</label>
+  <input type="password" [(ngModel)]="password" class="form-control" />
+
+  <br />
+  <button (click)="registrar()" class="btn btn-primary">Registrar</button>
+  <button (click)="login()" class="btn btn-success">Login</button>
+
+  <p class="mt-2">{{ mensaje }}</p>
+</div>

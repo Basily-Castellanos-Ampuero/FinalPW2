@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container px-4">
+    <a class="navbar-brand" routerLink="/">StudyFlow</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Tutorial</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Repasos</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            Opciones
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+
+        <!-- SOLO mostrar si NO hay sesion -->
+        <li class="nav-item" *ngIf="!auth.isLoggedIn">
+          <a class="nav-link" routerLink="/auth">Registro / Login</a>
+        </li>
+      </ul>
+
+      <!-- Formulario de busqueda -->
+      <form class="d-flex me-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+
+      <!-- SOLO mostrar si HAY sesión -->
+      <div *ngIf="auth.isLoggedIn" class="d-flex align-items-center">
+        <span class="me-3">👤 {{ auth.nombreUsuario }}</span>
+        <button class="btn btn-outline-danger btn-sm" (click)="logout()">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Contenido principal -->
+<div class="container main-content my-4">
+  <h1>StudyFlow</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>¿Qué es StudyFlow?</h2>
+      <p>StudyFlow es una plataforma diseñada para facilitar el aprendizaje que optimiza tu tiempo de estudio con 
+        recordatorios inteligentes y personaliza tus sesiones, reduce el olvido mejorando tu rendimiento academico.
+      </p>
+      <img src="assets/img/curva-del-olvido.jpg" class="img-thumbnail" alt="curva del olvido"
+        style="width: 100%; height: auto;">
+    </div>
+    <div class="col-md-6">
+      <h2>¿Qué es el método del repaso espaciado?</h2>
+      <ul>
+        <li>El repaso espaciado es una técnica de estudio que consiste en repasar la informacion en 
+          intervalos crecientes de tiempo, se basa en la curva del olvido propuesta por Hermann Ebbinghaus
+          que demuestra como olvidamos la informacion si no es revisada periodicamente 
+        </li>
+        <li>Este método ayuda a mejorar la retención a largo plazo siendo bastante util en materias donde necesitas recordar
+          varios conceptos ademas fortalece las conexiones neuronales lo que hace que la informacion se consolide mejor en la 
+          memoria a largo plazo
+        </li>
+        <li>¿Qué es la curva del olvido? Cuando aprendes algo nuevo al inicio lo recuerdas muy bien sin embargo si no lo vuelves 
+          a revisar, tu cerebro empieza a olvidarlo rapidamente, la curva del olvido demuestra que despues de 24 hrs puedes 
+          llegar a olvidar mas del 50% de lo que estudiaste
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Aquí se inyectan las rutas dinámicas -->
+<router-outlet></router-outlet>
+
+<footer class="footer-suave text-center mt-auto">
+  <div class="container">
+    <p class="mb-1">&copy; 2025 StudyFlow. Todos los derechos reservados.</p>
+    <p class="mb-0">
+      <a href="#" class="text-decoration-underline me-3 text-muted">Términos</a>
+      <a href="#" class="text-decoration-underline me-3 text-muted">Privacidad</a>
+      <a href="#" class="text-decoration-underline text-muted">Contacto</a>
+    </p>
+  </div>
+</footer>

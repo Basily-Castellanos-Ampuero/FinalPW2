@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+/* Paleta base: azul suave, celeste, blanco */
+:root {
+  --primary-color: #60bccce8;   /* Bootstrap blue base */
+  --secondary-color: #10108ac2; /* Celeste claro */
+  --bg-color: #e9eae7;        /* Muy claro */
+  --text-color: #212529;
+  --navbar-bg: #60bccce8;       /* Azul */
+  --navbar-text: #e9eae7;     /* Blanco */
+}
+
+body {
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-color);
+}
+
+/* Navbar personalizado */
+.navbar {
+  background-color: var(--navbar-bg) !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: var(--navbar-text) !important;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-success {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-success:hover {
+  background-color: #5ca6da;
+  border-color: #5ca6da;
+}
+.main-content {
+  flex: 1;
+}
+app-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+/* Footer suave */
+.footer-suave {
+  background-color: var(--primary-color);
+  color: var(--navbar-text);
+  padding: 1rem 0;
+  text-align: center;
+}
