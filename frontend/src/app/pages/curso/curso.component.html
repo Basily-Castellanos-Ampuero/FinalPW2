@@ -1,0 +1,41 @@
+<h2>Crear Curso</h2>
+
+<form (ngSubmit)="crearCurso()">
+  <label>Categoría:</label>
+  <select [(ngModel)]="categoria" name="categoria" required>
+    <option value="" disabled selected>Selecciona una categoría</option>
+    <option value="matematicas">Matemáticas</option>
+    <option value="tecnologia">Tecnología</option>
+    <option value="programacion">Programación</option>
+    <option value="ciencias">Ciencias</option>
+    <option value="letras">Letras</option>
+    <option value="relacionesHumanas">Relaciones Humanas</option>
+    <option value="empresas">Empresas</option>
+    <option value="humanidades">Humanidades</option>
+  </select>
+
+  <label>Nombre del Curso:</label>
+  <input type="text" [(ngModel)]="nombre" name="nombre" required />
+
+  <label>Dificultad:</label>
+  <select [(ngModel)]="dificultad" name="dificultad" required>
+    <option value="" disabled selected>Selecciona la dificultad</option>
+    <option value="facil">Fácil</option>
+    <option value="media">Media</option>
+    <option value="dificil">Difícil</option>
+  </select>
+
+  <div>
+    <label for="tiempo_limite">Tiempo límite:</label>
+    <input type="number" [(ngModel)]="tiempo_limite" id="tiempo_limite" name="tiempo_limite" placeholder="Ej: 10 días" />
+    <label>Frecuencia personalizada (en minutos):</label>
+    <input type="number" [(ngModel)]="frecuencia_personalizada" name="frecuencia_personalizada" min="1" placeholder="Ej: 90 o dejar en blanco" />
+
+
+  </div>
+
+  <button type="submit">Crear curso</button>
+</form>
+
+<p *ngIf="mensaje">{{ mensaje }}</p>
+<p *ngIf="plan">📘 Plan sugerido: {{ plan }}</p>
