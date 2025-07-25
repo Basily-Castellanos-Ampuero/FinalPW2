@@ -10,15 +10,20 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+          <button *ngIf="auth.isLoggedIn" routerLink="/curso">
+            Crear curso
+          </button>
+          <button *ngIf="auth.isLoggedIn" routerLink="/mis-cursos">
+            Ver mis cursos
+          </button>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Recursos</a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="#">Tutorial</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Repasos</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -26,29 +31,39 @@
             Opciones
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><nav>
+                   <button (click)="toggleDarkMode()">🌓 Tema</button>
+                   <span *ngIf="auth.isLoggedIn">Bienvenido, {{ auth.nombreUsuario }}</span>
+                   <button *ngIf="auth.isLoggedIn" (click)="logout()">Cerrar sesión</button>
+                 </nav> </li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li> 
+            </li>
           </ul>
         </li>
 
-        <!-- SOLO mostrar si NO hay sesion -->
+        <!-- SOLO si NO ha iniciado sesión -->
         <li class="nav-item" *ngIf="!auth.isLoggedIn">
-          <a class="nav-link" routerLink="/auth">Registro / Login</a>
+          <a class="nav-link" routerLink="/login">Iniciar sesión</a>
         </li>
+        <li class="nav-item" *ngIf="!auth.isLoggedIn">
+          <a class="nav-link" routerLink="/register">Registrarse</a>
+        </li>
+
       </ul>
 
-      <!-- Formulario de busqueda -->
+      <!-- Buscador -->
       <form class="d-flex me-3" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
 
-      <!-- SOLO mostrar si HAY sesión -->
+      <!-- SOLO si está logueado -->
       <div *ngIf="auth.isLoggedIn" class="d-flex align-items-center">
-        <span class="me-3">👤 {{ auth.nombreUsuario }}</span>
+        <span class="me-3"> {{ auth.nombreUsuario }}</span>
         <button class="btn btn-outline-danger btn-sm" (click)="logout()">Cerrar sesión</button>
+        <a class="btn btn-outline-primary me-2" routerLink="/perfil">Mi perfil</a>
       </div>
     </div>
   </div>
