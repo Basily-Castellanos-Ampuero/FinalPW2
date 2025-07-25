@@ -1,20 +1,39 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { AuthService } from './services/auth';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterModule],
+  standalone: true,
   templateUrl: './app.html',
+  styleUrls: ['./app.css'],
+  imports: [CommonModule, RouterOutlet, RouterModule]
 })
 export class AppComponent {
-  constructor(public auth: AuthService) {
-    this.auth.cargarEstado();
+  darkMode = false;
+  constructor(
+    public auth: AuthService, 
+    private router: Router
+  ) {
+    this.auth.cargarEstado(); 
+    this.loadDarkMode();
   }
 
   logout() {
     this.auth.logout();
+    this.router.navigate(['/']);
+  }
+    toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    document.body.classList.toggle('dark-mode', this.darkMode);
+    localStorage.setItem('darkMode', this.darkMode ? '1' : '0');
+  }
+
+  loadDarkMode() {
+    const dark = localStorage.getItem('darkMode') === '1';
+    this.darkMode = dark;
+    if (dark) document.body.classList.add('dark-mode');
   }
 }
+
