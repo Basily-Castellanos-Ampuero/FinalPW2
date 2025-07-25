@@ -64,3 +64,21 @@ body {
   padding: 1rem 0;
   text-align: center;
 }
+:root {
+  --bg-color:  #e9eae7; 
+  --text-color: #0f0f0f;
+}
+
+.dark-mode {
+  --bg-color: #141418;
+  --text-color:  #e9eae7; 
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
