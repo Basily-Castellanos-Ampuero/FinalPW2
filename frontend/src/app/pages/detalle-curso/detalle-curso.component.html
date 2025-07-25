@@ -1,0 +1,51 @@
+<h2>Detalles del Curso</h2>
+<p><strong>Nombre:</strong> {{ curso?.nombre }}</p>
+<p><strong>Dificultad:</strong> {{ curso?.dificultad }}</p>
+<p><strong>Frecuencia:</strong> {{ curso?.frecuencia_estudio }}</p>
+<p><strong>Progreso:</strong> {{ curso?.progreso_total }}%</p>
+<p><strong>Días restantes:</strong> {{ curso?.dias_restantes ?? 'N/A' }}</p>
+
+<h3>Temas</h3>
+<ul *ngIf="curso?.temas?.length > 0; else sinTemas">
+  <li *ngFor="let tema of curso.temas">
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="tema.completado"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="actualizarTema(tema.id, { completado: tema.completado })"
+      />
+      {{ tema.nombre }}
+    </label>
+    <select
+      [ngModel]="tema.avance"
+      (ngModelChange)="actualizarTema(tema.id, { avance: $event })"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <option value="bajo">Bajo</option>
+      <option value="medio">Medio</option>
+      <option value="alto">Alto</option>
+    </select>
+    - {{ tema.porcentaje }}%
+  </li>
+</ul>
+<ng-template #sinTemas>
+  <p>No hay temas añadidos aún.</p>
+</ng-template>
+
+<h3>Añadir nuevo tema</h3>
+<div>
+  <label>Nombre del tema:</label>
+  <input [(ngModel)]="nuevoTema.nombre" [ngModelOptions]="{ standalone: true }" />
+
+  <label>Avance inicial:</label>
+  <select [(ngModel)]="nuevoTema.avance" [ngModelOptions]="{ standalone: true }">
+    <option value="bajo">Bajo (30%)</option>
+    <option value="medio">Medio (60%)</option>
+    <option value="alto">Alto (90%)</option>
+  </select>
+
+  <button (click)="crearTema()">Añadir Tema</button>
+</div>
+
+<p class="mensaje">{{ mensaje }}</p>
