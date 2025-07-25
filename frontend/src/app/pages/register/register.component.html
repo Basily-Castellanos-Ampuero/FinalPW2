@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h2>Crear cuenta</h2>
+  <form (ngSubmit)="registrar()" #registerForm="ngForm">
+    <div class="mb-3">
+      <label>Nombre</label>
+      <input class="form-control" [(ngModel)]="nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input class="form-control" [(ngModel)]="email" name="email" required type="email">
+    </div>
+
+    <div class="mb-3">
+      <label>Contraseña</label>
+      <input class="form-control" [(ngModel)]="password" name="password" required type="password">
+    </div>
+
+    <div class="mb-3">
+      <label>Confirmar contraseña</label>
+      <input class="form-control" [(ngModel)]="confirmar" name="confirmar" required type="password">
+    </div>
+
+    <button class="btn btn-success"
+            [disabled]="!registerForm.valid || password !== confirmar">
+      Registrarse
+    </button>
+
+    <div class="text-danger mt-2" *ngIf="password !== confirmar">
+        Las contraseñas no coinciden
+    </div>
+    <div class="text-success mt-2" *ngIf="mensaje">{{ mensaje }}</div>
+  </form>
+</div>
