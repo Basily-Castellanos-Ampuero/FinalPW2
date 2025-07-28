@@ -25,6 +25,13 @@ SECRET_KEY = 'django-insecure-kox@q(!(_7h0doqqclr@#l(p(9l7d-@w=gr+b2t8591gg4i)!6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'studyflow@gmail.com'
+EMAIL_HOST_PASSWORD = 'contrasena'
+
 ALLOWED_HOSTS = []
 
 
