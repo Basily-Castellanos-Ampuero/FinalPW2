@@ -1,35 +1,99 @@
-/* You can add global styles to this file, and also import other style files */
-/* Paleta base: azul suave, celeste, blanco */
 :root {
-  --primary-color: #60bccce8;   /* Bootstrap blue base */
-  --secondary-color: #10108ac2; /* Celeste claro */
-  --bg-color: #e9eae7;        /* Muy claro */
+  --primary-color: #7eb5c0e8;
+  --secondary-color: #10108ac2;
+  --bg-color: #e9eae7;
   --text-color: #212529;
-  --navbar-bg: #60bccce8;       /* Azul */
-  --navbar-text: #e9eae7;     /* Blanco */
+  --navbar-bg: #67a6b1;
+  --navbar-text: #ffffff;
+  --transition-fast: 0.2s ease-in-out;
+  --transition-slow: 0.4s ease-in-out;
 }
 
+.dark-mode {
+  --bg-color: #141418;
+  --text-color: #e9eae7;
+  --navbar-bg: #100b3b;
+  --navbar-text: #e9eae7;
+}
+
+/* ========== BASE ========== */
 body {
   background-color: var(--bg-color);
-  font-family: 'Segoe UI', sans-serif;
   color: var(--text-color);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding-top: 90px;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Navbar personalizado */
+a {
+  transition: color var(--transition-fast), text-decoration var(--transition-fast);
+}
+
+/* ========== NAVBAR ========== */
 .navbar {
   background-color: var(--navbar-bg) !important;
-}
-
-.navbar .nav-link,
-.navbar .navbar-brand {
   color: var(--navbar-text) !important;
+  padding: 0.4rem 1.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
-.navbar .nav-link:hover {
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: var(--navbar-text) !important;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: #ffffff !important;
+  transition: var(--transition-fast);
+}
+/* Efecto hover suave */
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.nav-link.active {
+  font-weight: 700;
   text-decoration: underline;
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
 }
 
-/* Botones */
+/* ========== BOTONES ========== */
+.btn {
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
 .btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
@@ -41,44 +105,353 @@ body {
 }
 
 .btn-success:hover {
-  background-color: #5ca6da;
-  border-color: #5ca6da;
+  background-color: #5ca6dab0;
+  border-color: #5ca6dac7;
 }
-.main-content {
-  flex: 1;
+
+.btn-outline-primary:hover,
+.btn-outline-danger:hover,
+.btn-outline-success:hover {
+  opacity: 0.9;
 }
-app-root {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+
+/* ========== CONTENIDO PRINCIPAL ========== */
+.container.main-content {
+  padding: 2rem 6%;
+  animation: fadeInUp 0.6s ease-in-out;
 }
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-/* Footer suave */
+
+h1, h2 {
+  font-weight: 700;
+}
+
+p, li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* ========== ROUTER OUTLET ========== */
+.router-wrapper {
+  padding-left: 6%;
+  padding-right: 6%;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+/* ========== FOOTER ========== */
 .footer-suave {
   background-color: var(--primary-color);
   color: var(--navbar-text);
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   text-align: center;
-}
-:root {
-  --bg-color:  #e9eae7; 
-  --text-color: #0f0f0f;
+  margin-top: auto;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
 }
 
-.dark-mode {
-  --bg-color: #141418;
-  --text-color:  #e9eae7; 
+.footer-suave a {
+  color: var(--navbar-text);
+  margin: 0 1rem;
+  text-decoration: none;
 }
 
-body {
-  background-color: var(--bg-color);
+.footer-suave a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .container.main-content,
+  .router-wrapper {
+    padding: 1.2rem;
+  }
+
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .footer-suave {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 992px) {
+  .navbar .nav-link,
+  .navbar .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .container.main-content {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar .nav-link {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-suave {
+    font-size: 0.85rem;
+  }
+}
+/* ===================== BOTONES GENERALES ===================== */
+button {
+  background-color: var(--primary-color);
+  color: var(--navbar-text);
+  border: none;
+  padding: 0.5rem 1.0rem;
+  border-radius: 5px;
+  font-weight: 500;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #53a6b7b8;
+  transform: scale(1.03);
+}
+
+button:disabled {
+  background-color: #ccccccc1;
+  cursor: not-allowed;
+}
+
+/* Aplica también a input type=button o submit */
+input[type="submit"],
+input[type="button"] {
+  background-color: var(--primary-color);
+  color: var(--navbar-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #54a9bec1;
+  transform: scale(1.03);
+}
+
+/* ===================== FORMULARIOS ===================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
   color: var(--text-color);
-  margin: 0;
-  font-family: Arial, sans-serif;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(96, 188, 204, 0.3);
+  outline: none;
+}
+
+/* ===================== ALERTAS ===================== */
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* ===================== TEXTOS Y ENCABEZADOS ===================== */
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  color: var(--text-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* ===================== OTROS CONTENEDORES ===================== */
+section, article, .card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: background-color 0.3s ease;
+}
+
+/* Modo oscuro para contenedores */
+.dark-mode section,
+.dark-mode article,
+.dark-mode .card {
+  background-color: #1e1e1e;
+}
+
+/* ===================== TRANSICIONES ===================== */
+* {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ===================== INPUTS GENERALES ===================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="file"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: var(--text-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(96, 188, 204, 0.3);
+  outline: none;
+}
+
+/* ===================== CHECKBOX Y RADIO ===================== */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--primary-color); /* Compatible en navegadores modernos */
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: accent-color 0.3s ease;
+}
+
+.input-error {
+  border-color: #dc3545;
+  background-color: #ffe6e6;
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+}
+
+/* Opcional: espacio entre el input y la etiqueta */
+label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+/* Modo oscuro para inputs */
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode input[type="password"],
+.dark-mode input[type="search"],
+.dark-mode input[type="number"],
+.dark-mode input[type="tel"],
+.dark-mode input[type="url"],
+.dark-mode input[type="date"],
+.dark-mode input[type="file"],
+.dark-mode select,
+.dark-mode textarea {
+  background-color: #1e1e1e;
+  color: #e9eae7;
+  border-color: #444;
+}
+
+/* Placeholder visible en modo oscuro */
+input::placeholder,
+textarea::placeholder {
+  color: #999;
+  opacity: 0.8;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #bbb;
+}
+.studyflow{
+  font-size: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #d4e4eb0f;
+  padding: 5px;
+  border-radius: 15px;
+  color: #b0b0a2;
+}
+
+.navbar .form-control {
+  max-width: 160px;
+}
+
+/* Compacto y alineado */
+.navbar .btn {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.875rem;
+}
+
+.navbar span {
+  font-weight: 500;
+}
