@@ -2,10 +2,13 @@ from rest_framework import serializers
 from .models import Usuario
 from rest_framework import serializers
 from .models import Usuario
-
+from django.core.validators import EmailValidator
 
 class UsuarioRegistroSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    email = serializers.EmailField(
+        validators=[EmailValidator(message="Ingrese un correo válido")]
+    )
 
     class Meta:
         model = Usuario
