@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
+  selector: 'app-tutorial',
   standalone: true,
-  selector: 'app-landing',
   imports: [CommonModule],
-  templateUrl: './landing.component.html',
+  templateUrl: './tutorial.component.html',
 })
-export class LandingComponent {}
+export class TutorialComponent {}

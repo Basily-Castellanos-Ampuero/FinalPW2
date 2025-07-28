@@ -5,6 +5,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { CursoComponent } from './pages/curso/curso.component';
 import { MisCursosComponent } from './pages/mis-cursos/mis-cursos.component';
 import { CursoDetalleComponent } from './pages/detalle-curso/detalle-curso.component';
+import { TutorialComponent } from './pages/tutorial/tutorial.component';
 
 
 export const routes: Routes = [
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'curso', component: CursoComponent },
   { path: 'mis-cursos', component: MisCursosComponent },
   { path: 'curso/:id', component: CursoDetalleComponent },
+  { path: 'tutorial', component: TutorialComponent },
 ];

@@ -4,6 +4,17 @@
 <p><strong>Frecuencia:</strong> {{ curso?.frecuencia_estudio }}</p>
 <p><strong>Progreso:</strong> {{ curso?.progreso_total }}%</p>
 <p><strong>Días restantes:</strong> {{ curso?.dias_restantes ?? 'N/A' }}</p>
+<p><strong>Revisiones esperadas:</strong> {{ curso?.revisiones_realizadas ?? 'N/A' }}</p>
+<p><strong>Próxima revisión estimada:</strong> {{ curso?.siguiente_revision | date:'medium' }}</p>
+
+<h3>Visualización de Progreso</h3>
+<canvas baseChart
+  type="bar"
+  [data]="barChartData"
+  [options]="barChartOptions">
+</canvas>
+
+
 
 <h3>Temas</h3>
 <ul *ngIf="curso?.temas?.length > 0; else sinTemas">

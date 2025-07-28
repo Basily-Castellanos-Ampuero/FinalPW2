@@ -19,7 +19,6 @@ export class AppComponent {
     this.auth.cargarEstado(); 
     this.loadDarkMode();
   }
-
   logout() {
     this.auth.logout();
     this.router.navigate(['/']);
@@ -29,11 +28,13 @@ export class AppComponent {
     document.body.classList.toggle('dark-mode', this.darkMode);
     localStorage.setItem('darkMode', this.darkMode ? '1' : '0');
   }
-
   loadDarkMode() {
     const dark = localStorage.getItem('darkMode') === '1';
     this.darkMode = dark;
     if (dark) document.body.classList.add('dark-mode');
+  }
+  alertaEstudia(): void {
+   alert('¡Estudia!');
   }
 }
 

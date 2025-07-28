@@ -1,0 +1,64 @@
+.mis-cursos-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.mis-cursos-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.mis-cursos-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff23;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mis-cursos-container th,
+.mis-cursos-container td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.mis-cursos-container thead {
+  background-color: #ffffff48;
+}
+
+.mis-cursos-container tr:last-child td {
+  border-bottom: none;
+}
+
+.detalles-btn {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.875rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.detalles-btn:hover {
+  background-color: #0056b3;
+}
+.eliminar-btn {
+  background-color: #dc3545; /* rojo Bootstrap */
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  margin-left: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.eliminar-btn:hover {
+  background-color: #bb2d3b;
+}

@@ -86,3 +86,18 @@ class TemaUpdateView(RetrieveUpdateAPIView):
         else:
             print("Errores de validación:", serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+from rest_framework.generics import DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
+
+class CursoEliminarView(DestroyAPIView):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        curso = super().get_object()
+        if curso.usuario != self.request.user:
+            raise PermissionDenied("No tienes permiso para eliminar este curso.")
+        return curso
