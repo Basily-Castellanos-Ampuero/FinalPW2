@@ -44,4 +44,8 @@ export class ApiService {
     return this.http.post(`http://127.0.0.1:8000/api/temas/crear/${cursoId}/`, data);
   }
 
+  eliminarCurso(cursoId: number) {
+    return this.http.delete(`http://127.0.0.1:8000/api/cursos/eliminar/${cursoId}/`);
+  }
 }
+  
