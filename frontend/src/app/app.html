@@ -1,73 +1,78 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container px-4">
-    <a class="navbar-brand" routerLink="/">StudyFlow</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent">
+    <a class="navbar-brand studyflow" routerLink="/">StudyFlow</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <li class="nav-item">
-          <button *ngIf="auth.isLoggedIn" routerLink="/curso">
-            Crear curso
-          </button>
-          <button *ngIf="auth.isLoggedIn" routerLink="/mis-cursos">
-            Ver mis cursos
-          </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+      <!-- Menú izquierdo -->
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="auth.isLoggedIn">
+          <a class="nav-link" routerLink="/curso">Crear curso</a>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Recursos</a>
+        <li class="nav-item" *ngIf="auth.isLoggedIn">
+          <a class="nav-link" routerLink="/mis-cursos">Ver mis cursos</a>
         </li>
-
+        
         <li class="nav-item">
-          <a class="nav-link" href="#">Tutorial</a>
+          <a class="nav-link" routerLink="/tutorial">Tutorial</a>
         </li>
-
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
             Opciones
           </a>
           <ul class="dropdown-menu">
-            <li><nav>
-                   <button (click)="toggleDarkMode()">🌓 Tema</button>
-                   <span *ngIf="auth.isLoggedIn">Bienvenido, {{ auth.nombreUsuario }}</span>
-                   <button *ngIf="auth.isLoggedIn" (click)="logout()">Cerrar sesión</button>
-                 </nav> </li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li> 
+            <li class="dropdown-item">
+              <button class="btn btn-link p-0" (click)="toggleDarkMode()">🌓 Tema</button>
+            </li>
+          
+            <li class="dropdown-item" *ngIf="auth.isLoggedIn">
+              Bienvenido, {{ auth.nombreUsuario }}
+            </li>
+          
+            <li class="dropdown-item" *ngIf="auth.isLoggedIn">
+              <button class="btn btn-link p-0 text-danger" (click)="logout()">Cerrar sesión</button>
+            </li>
+          
+            <li><hr class="dropdown-divider" /></li>
+          
+            <li class="dropdown-item">
+              <button class="btn btn-link p-0" (click)="alertaEstudia()">📚 Estudiar</button>
             </li>
           </ul>
-        </li>
 
-        <!-- SOLO si NO ha iniciado sesión -->
+        </li>
         <li class="nav-item" *ngIf="!auth.isLoggedIn">
           <a class="nav-link" routerLink="/login">Iniciar sesión</a>
         </li>
         <li class="nav-item" *ngIf="!auth.isLoggedIn">
           <a class="nav-link" routerLink="/register">Registrarse</a>
         </li>
-
       </ul>
 
-      <!-- Buscador -->
-      <form class="d-flex me-3" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
-
-      <!-- SOLO si está logueado -->
-      <div *ngIf="auth.isLoggedIn" class="d-flex align-items-center">
-        <span class="me-3"> {{ auth.nombreUsuario }}</span>
-        <button class="btn btn-outline-danger btn-sm" (click)="logout()">Cerrar sesión</button>
-        <a class="btn btn-outline-primary me-2" routerLink="/perfil">Mi perfil</a>
+      <!-- Menú derecho: búsqueda + perfil -->
+      <div class="d-flex align-items-center">
+        <form class="d-flex me-2" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" />
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      
+        <div *ngIf="auth.isLoggedIn" class="d-flex align-items-center">
+          <span class="me-2">{{ auth.nombreUsuario }}</span>
+          <a class="btn btn-outline-primary btn-sm me-2" routerLink="/perfil">Mi perfil</a>
+          <button class="btn btn-outline-danger btn-sm" (click)="logout()">Cerrar sesión</button>
+        </div>
       </div>
     </div>
   </div>
 </nav>
+
+<!-- Aquí se inyectan las rutas dinámicas -->
+ <div  class="router-wrapper px-4 px-md-5">
+<router-outlet style="padding: 0.5%;"></router-outlet>
+</div>
 
 <!-- Contenido principal -->
 <div class="container main-content my-4">
@@ -78,10 +83,13 @@
       <p>StudyFlow es una plataforma diseñada para facilitar el aprendizaje que optimiza tu tiempo de estudio con 
         recordatorios inteligentes y personaliza tus sesiones, reduce el olvido mejorando tu rendimiento academico.
       </p>
-      <img src="assets/img/curva-del-olvido.jpg" class="img-thumbnail" alt="curva del olvido"
+      <img src="/assets/img/curva-del-olvido.jpg" class="img-thumbnail" alt="curva del olvido"
         style="width: 100%; height: auto;">
     </div>
     <div class="col-md-6">
+
+      
+
       <h2>¿Qué es el método del repaso espaciado?</h2>
       <ul>
         <li>El repaso espaciado es una técnica de estudio que consiste en repasar la informacion en 
@@ -101,8 +109,7 @@
   </div>
 </div>
 
-<!-- Aquí se inyectan las rutas dinámicas -->
-<router-outlet></router-outlet>
+
 
 <footer class="footer-suave text-center mt-auto">
   <div class="container">
