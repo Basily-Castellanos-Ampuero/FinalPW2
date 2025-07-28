@@ -47,7 +47,7 @@
 <h3>Añadir nuevo tema</h3>
 <div>
   <label>Nombre del tema:</label>
-  <input [(ngModel)]="nuevoTema.nombre" [ngModelOptions]="{ standalone: true }" />
+  <input [(ngModel)]="nuevoTema.nombre" type="text"  name="nombre" required [ngModelOptions]="{ standalone: true }" />
 
   <label>Avance inicial:</label>
   <select [(ngModel)]="nuevoTema.avance" [ngModelOptions]="{ standalone: true }">
