@@ -1,0 +1,17 @@
+.perfil-container h2 {
+  font-weight: 600;
+}
+
+.card h5 {
+  font-weight: 600;
+}
+
+.card .rounded-circle {
+  background-color: #627c92;
+}
+
+@media (max-width: 767px) {
+  .perfil-container .row {
+    flex-direction: column;
+  }
+}
