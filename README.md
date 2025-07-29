@@ -3,6 +3,8 @@
 
 Este artículo presenta Studyflow, una plataforma web desarrollada con tecnologías modernas de programación que tiene como objetivo mejorar la retención del conocimiento a través del envío de notificaciones inteligentes. Basado en la teoría de la curva del olvido de Hermann Ebbinghaus, Studyflow organiza sesiones de repaso utilizando principios del repaso espaciado para optimizar el aprendizaje del usuario. La aplicación ofrece una interfaz intuitiva y funcionalidades como registro de sesiones, programación personalizada y alertas automatizadas. El sistema fue diseñado e implementado como parte de un proyecto universitario y demuestra el potencial de las soluciones web en el ámbito educativo.
 
+<img width="1200" height="1029" alt="image" src="https://github.com/user-attachments/assets/3c3ce056-a1d2-4548-80be-74b016728d4c" />
+
 #
 
 ## Introducción
